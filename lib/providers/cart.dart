@@ -8,12 +8,12 @@ class CartItem {
   final int quantity;
   final double price;
 
-    CartItem({
+  CartItem({
     @required this.id,
     @required this.title,
     @required this.quantity,
     @required this.price,
-});
+  });
 }
 
 class Cart with ChangeNotifier {
@@ -57,6 +57,16 @@ class Cart with ChangeNotifier {
         ),
       );
     }
+    notifyListeners();
+  }
+
+  void removeItem(String productId) {
+    _items.remove(productId);
+    notifyListeners();
+  }
+
+  void clear() {
+    _items = {};
     notifyListeners();
   }
 }
